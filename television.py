@@ -13,7 +13,7 @@ class Television:
         self.__volume = Television.MIN_VOLUME
         self.__channel = Television.MIN_CHANNEL
 
-    def power(self):
+    def power(self) -> None:
         """
         Turns the tv off if it was on, and on if it was off
         """
@@ -22,7 +22,7 @@ class Television:
         else:
             self.__status = True
 
-    def mute(self):
+    def mute(self) -> None:
         """
         Mutes/unmutes the tv depending on previous settings
         """
@@ -31,8 +31,10 @@ class Television:
                 self.__muted = False
             else:
                 self.__muted = True
+        else:
+            self.__muted = False
 
-    def channel_up(self):
+    def channel_up(self) -> None:
         """
         Increases the channel by 1; if channel is at max, it goes to min
         """
@@ -41,8 +43,10 @@ class Television:
                 self.__channel = Television.MIN_CHANNEL
             else:
                 self.__channel += 1
+        else:
+            self.__channel = Television.MIN_CHANNEL
 
-    def channel_down(self):
+    def channel_down(self) -> None:
         """
         Decreases the channel by 1; if channel is at min, it goes to max
         """
@@ -51,8 +55,10 @@ class Television:
                 self.__channel = Television.MAX_CHANNEL
             else:
                 self.__channel -= 1
+        else:
+            self.__channel = Television.MIN_CHANNEL
 
-    def volume_up(self):
+    def volume_up(self) -> None:
         """
         Increases the volume by 1; if volume is at max, it stays the same
         """
@@ -63,8 +69,10 @@ class Television:
                 self.__volume = Television.MAX_VOLUME
             else:
                 self.__volume += 1
+        else:
+            self.__volume = Television.MIN_VOLUME
 
-    def volume_down(self):
+    def volume_down(self) -> None:
         """
         Decreases the volume by 1; if volume is at min, it stays the same
         """
@@ -75,12 +83,16 @@ class Television:
                 self.__volume = Television.MIN_VOLUME
             else:
                 self.__volume -= 1
+        else:
+            self.__volume = Television.MIN_VOLUME
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Sets string formatting to list the power, channel, and volume settings; if muted, volume = min volume
         """
-        if self.__muted == True:
+        if self.__status == False:
+            return f"Power = False, Channel = {Television.MIN_CHANNEL}, Volume = {Television.MIN_VOLUME}"
+        elif self.__muted == True:
             return f"Power = {self.__status}, Channel = {self.__channel}, Volume = {Television.MIN_VOLUME}"
         else:
             return f"Power = {self.__status}, Channel = {self.__channel}, Volume = {self.__volume}"
